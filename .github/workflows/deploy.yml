@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  test:
+  validate:
     runs-on: ubuntu-latest
     steps:
       - name: Check out code
@@ -28,7 +28,7 @@ jobs:
 
   build-and-push:
     if: github.event_name == 'push'
-    needs: test
+    needs: validate
     runs-on: ubuntu-latest
     permissions:
       contents: read
