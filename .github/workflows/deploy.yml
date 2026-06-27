@@ -30,6 +30,7 @@ jobs:
     if: github.event_name == 'push'
     needs: validate
     runs-on: ubuntu-latest
+    environment: dev
     permissions:
       id-token: write
       contents: read
