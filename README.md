@@ -1,6 +1,6 @@
 # Simple Python App for ECS
 
-![CI](https://github.com/ali509/simple-ecs-python-app/actions/workflows/ci.yml/badge.svg)
+![CI/CD](https://github.com/ali509/simple-ecs-python-app/actions/workflows/deploy.yml/badge.svg)
 
 This repository contains a minimal Flask application that exposes:
 - `/` returning a JSON message

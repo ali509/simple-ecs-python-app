@@ -3,6 +3,7 @@ name: Build and Deploy
 on:
   push:
     branches: [main]
+  pull_request:
   workflow_dispatch:
 
 jobs:
@@ -26,6 +27,7 @@ jobs:
         run: pytest -q
 
   build-and-push:
+    if: github.event_name == 'push'
     needs: test
     runs-on: ubuntu-latest
     permissions:
