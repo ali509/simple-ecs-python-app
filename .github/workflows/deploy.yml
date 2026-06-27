@@ -56,9 +56,13 @@ jobs:
 
       - name: Build and push Docker image to ECR
         run: |
-          IMAGE_URI=${{ vars.AWS_ACCOUNT_ID }}.dkr.ecr.${{ vars.AWS_REGION }}.amazonaws.com/${{ vars.ECR_REPOSITORY }}:${{ github.sha }}
-          docker build -t "$IMAGE_URI" .
-          docker push "$IMAGE_URI"
+          IMAGE_SHA_TAG=dev-${{ github.sha }}
+          IMAGE_LATEST_TAG=dev-latest
+          IMAGE_SHA_URI=${{ vars.AWS_ACCOUNT_ID }}.dkr.ecr.${{ vars.AWS_REGION }}.amazonaws.com/${{ vars.ECR_REPOSITORY }}:${IMAGE_SHA_TAG}
+          IMAGE_LATEST_URI=${{ vars.AWS_ACCOUNT_ID }}.dkr.ecr.${{ vars.AWS_REGION }}.amazonaws.com/${{ vars.ECR_REPOSITORY }}:${IMAGE_LATEST_TAG}
+          docker build -t "$IMAGE_SHA_URI" -t "$IMAGE_LATEST_URI" .
+          docker push "$IMAGE_SHA_URI"
+          docker push "$IMAGE_LATEST_URI"
 
       - name: Update ECS service
         run: |
